@@ -1,15 +1,9 @@
 #include <stdio.h>
+#include <time.h>
 int main(){
-    char a[10];
-    fgets(a, 10, stdin);
-    char* p = a;
-    while(*p != '\0'){
-        if((*p >= 'a') && (*p <= 'z')){
-            //*p = *p - ' ';
-            *p = *p - 'a' + 'A';
-            p = p + 1;
-
-        };
-    };
-    printf("%s", a);
+    time_t now;
+    time(&now);
+    struct tm *local;
+    local = localtime(&now);
+    printf("%02d:%02d:%02d  %02d", local->tm_sec, local->tm_min, local->tm_hour+3, local->tm_year+1900);
 };
